@@ -102,13 +102,8 @@ function createLogger(options) {
     return logger;
 }
 
-// // ** Load the global logger with the configured options
-const config_files = ['program.json'];
-const config_file = _.find(config_files, files.requireFile);
-const config = config_file ? files.requireFile(config_file) : {};
-
 // ** Create a Global Shared Application wide logger.
-const logger = createLogger(config.logger);
+const logger = createLogger();
 
 // ** Module Exports
 module.exports = logger;
