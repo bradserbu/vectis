@@ -1,0 +1,34 @@
+{
+  "name": "vectis",
+  "description": "",
+  "author": {
+    "name": "Brad Serbu",
+    "email": "bradserbu@bradserbu.com"
+  },
+  "bugs": {
+    "url": "https://github.com/bradserbu/vectis/issues"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {},
+  "homepage": "https://github.com/bradserbu/vectis#readme",
+  "keywords": [
+    "nodejs",
+    "microservice",
+    "framework",
+    "platform"
+  ],
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "bradserbu",
+      "email": "bradserbu@bradserbu.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bradserbu/vectis"
+  },
+  "scripts": {}
+}
