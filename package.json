@@ -10,6 +10,14 @@
     "url": "https://github.com/bradserbu/vectis/issues"
   },
   "dependencies": {
+    "bluebird": "^3.4.7",
+    "expand-home-dir": "0.0.3",
+    "fs-extra": "^2.0.0",
+    "highland": "^2.10.2",
+    "lodash": "^4.17.4",
+    "measured": "^1.1.0",
+    "uuid": "^3.0.1",
+    "yargs": "^6.6.0"
   },
   "devDependencies": {},
   "homepage": "https://github.com/bradserbu/vectis#readme",
