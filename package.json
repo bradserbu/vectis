@@ -1,7 +1,7 @@
 {
   "name": "vectis",
   "description": "NodeJS Application Platform",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "main": "./src",
   "license": "Apache-2.0",
   "author": {
