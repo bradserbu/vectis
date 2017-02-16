@@ -28,7 +28,7 @@ function getInfo(program) {
         let filepath = files.resolve(program);
 
         if (!files.existsSync(filepath))
-            throw errors('PROGRAM_NOT_FOUND', 'The package.json could not be found.');
+            throw errors('PROGRAM_NOT_FOUND', 'Please specify a "program.json" file, or create one in the current directory.');
 
         if (files.isDirectory(filepath))
             filepath = path.join(filepath, DEFAULT_PROGRAM_JSON);
@@ -50,9 +50,6 @@ function getInfo(program) {
 
     return program_info;
 }
-
-// ** Load the current program
-module.exports = getInfo;
 
 // ** Track Program Level Events
 const program_events = new EventEmitter();
