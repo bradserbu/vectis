@@ -50,7 +50,7 @@ function isDirectory(path) {
         .isDirectory();
 }
 
-// module.exports = fs;
+module.exports = fs;
 module.exports.requireFile = requireFile;
 module.exports.readLines = readLines;
 module.exports.isDirectory = isDirectory;

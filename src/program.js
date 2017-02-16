@@ -1,13 +1,58 @@
 'use strict';
 
 // ** Constants
+const DEFAULT_PROGRAM_JSON = 'program.json'; // Default Location for Program Information
 const STATS_INTERVAL = 10 * 1000; // 10 seconds
 
 // ** Dependencies
-const EventEmitter = require('events').EventEmitter;
+const util = require('util');
+const path = require('path');
+const files = require('./files');
+const errors = require('./errors');
 const logger = require('./logger');
+const EventEmitter = require('events').EventEmitter;
 const uuid = require('uuid');
 const measured = require('measured');
+
+/**
+ * Load Program Information
+ */
+function getInfo(program) {
+
+    logger.debug('ARGUMENTS', {arguments: arguments});
+
+    program = program || DEFAULT_PROGRAM_JSON;
+
+    // getInfo(filepath:string)
+    if (util.isString(program)) {
+        let filepath = files.resolve(program);
+
+        if (!files.existsSync(filepath))
+            throw errors('PROGRAM_NOT_FOUND', 'The package.json could not be found.');
+
+        if (files.isDirectory(filepath))
+            filepath = path.join(filepath, DEFAULT_PROGRAM_JSON);
+
+        program = files.requireFile(filepath);
+    }
+
+    const name = program.name;
+    const version = program.version;
+    const description = program.description || '';
+    const commands = program.commands;
+
+    const program_info = {
+        name: name,
+        version: version,
+        description: description,
+        commands: commands
+    };
+
+    return program_info;
+}
+
+// ** Load the current program
+module.exports = getInfo;
 
 // ** Track Program Level Events
 const program_events = new EventEmitter();
@@ -72,3 +117,4 @@ module.exports.shutdown = shutdown;
 module.exports.timeout = timeout;
 module.exports.interval = interval;
 module.exports.stats = program_stats;
+module.exports.getInfo = getInfo;
