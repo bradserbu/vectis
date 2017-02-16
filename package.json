@@ -1,14 +1,33 @@
 {
   "name": "vectis",
+  "description": "NodeJS Application Platform",
   "version": "0.0.1",
-  "description": "",
+  "main": "index.js",
+  "license": "Apache-2.0",
   "author": {
     "name": "Brad Serbu",
     "email": "bradserbu@bradserbu.com"
   },
+  "homepage": "https://github.com/bradserbu/vectis#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bradserbu/vectis"
+  },
   "bugs": {
     "url": "https://github.com/bradserbu/vectis/issues"
   },
+  "keywords": [
+    "nodejs",
+    "microservice",
+    "framework",
+    "platform"
+  ],
+  "maintainers": [
+    {
+      "name": "bradserbu",
+      "email": "bradserbu@bradserbu.com"
+    }
+  ],
   "dependencies": {
     "async": "^2.1.4",
     "bluebird": "^3.4.7",
@@ -24,24 +43,5 @@
     "yargs": "^6.6.0"
   },
   "devDependencies": {},
-  "homepage": "https://github.com/bradserbu/vectis#readme",
-  "keywords": [
-    "nodejs",
-    "microservice",
-    "framework",
-    "platform"
-  ],
-  "license": "Apache-2.0",
-  "main": "index.js",
-  "maintainers": [
-    {
-      "name": "bradserbu",
-      "email": "bradserbu@bradserbu.com"
-    }
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bradserbu/vectis"
-  },
   "scripts": {}
 }
