@@ -10,8 +10,12 @@
     "url": "https://github.com/bradserbu/vectis/issues"
   },
   "dependencies": {
+    "async": "^2.1.4",
     "bluebird": "^3.4.7",
+    "bluebird-q": "^2.1.1",
+    "callsite": "^1.0.0",
     "expand-home-dir": "0.0.3",
+    "extend": "^3.0.0",
     "fs-extra": "^2.0.0",
     "highland": "^2.10.2",
     "lodash": "^4.17.4",

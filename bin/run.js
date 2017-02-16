@@ -8,9 +8,9 @@ const DEFAULT_OPTIONS = {
 };
 
 // ** Dependencies
-const _ = require('underscore');
+const _ = require('lodash');
 const $ = require('highland');
-const Promise = require('bluebird');
+const Q = require('bluebird-q');
 const extend = require('extend');
 const util = require('util');
 const yargs = require('yargs');
@@ -20,7 +20,7 @@ const functions = require('../src/functions');
 const errors = require('../src/errors');
 const logger = require('../src/logger');
 const files = require('../src/files');
-const program = require('../src/program');
+const Program = require('../src/program');
 
 /**
  * Print the JSON representation of a value considering the optional newline value
@@ -78,7 +78,7 @@ function print(result) {
 
         let isFirst = true;
 
-        return new Promise((resolve, reject) => {
+        return Q.Promise((resolve, reject) => {
             $(result)
                 .map(result => {
                     if (isFirst) {
@@ -99,7 +99,7 @@ function print(result) {
         });
     }
 
-    return Promise.resolve(process.stdout.write(stringify(result)));
+    return Q.resolve(process.stdout.write(stringify(result)));
 }
 
 /**
@@ -156,7 +156,7 @@ function $run(func, args, options) {
 
     // ** Wait for the promise to complete before exiting
     // return isPromise(result) ? result : Promise.resolve(result);
-    return Promise.resolve(result);
+    return Q.when(result);
 }
 
 // ** Parse the commandline arguments.
@@ -211,7 +211,7 @@ if (util.isFunction(program)) {
     return $run(program, args, options)
         .catch(print_error)
         .then(print)
-        .finally(() => program.shutdown());
+        .finally(() => Program.shutdown());
 }
 
 // ** Extract the name of the command
