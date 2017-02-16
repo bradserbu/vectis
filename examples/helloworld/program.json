@@ -1,0 +1,17 @@
+{
+  "name": "helloworld",
+  "version": "1.0.0",
+  "description": "Hello World Program",
+  "commands": {
+    "sayhello": {
+      "provider": "sayhello.js",
+      "description": "Say hello to a user.",
+      "parameters": {
+        "name": {
+          "description": "The name of the user (optional).",
+          "required": false
+        }
+      }
+    }
+  }
+}
