@@ -5,10 +5,10 @@
   "commands": {
     "sayhello": {
       "provider": "sayhello.js",
-      "description": "Say hello to a user.",
+      "description": "Say Hello",
       "parameters": {
         "name": {
-          "description": "The name of the user (optional).",
+          "description": "The name of the person to greet.",
           "required": false
         }
       }
