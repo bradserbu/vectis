@@ -40,12 +40,16 @@ function getInfo(program) {
     const version = program.version;
     const description = program.description || '';
     const commands = program.commands;
+    const services = program.services;
+    const interfaces = program.interfaces;
 
     const program_info = {
         name: name,
         version: version,
         description: description,
-        commands: commands
+        commands: commands,
+        services: services,
+        interfaces: interfaces
     };
 
     return program_info;
