@@ -15,13 +15,16 @@ class ServiceAction extends EventEmitter {
         this.provider = loadProvider(options.provider);
         this.parameters = loadParameters(options.parameters);
     }
-
 }
 
 class Service extends EventEmitter {
-    constructor(options) {
+    constructor(name, options) {
 
-        this.address = options.address; // ie: admin/users
+        this.name = name; // ie: admin/users
+        this.options = options;
+
+        // Sent 'initialized' event notification
+        this.emit('initialized', this);
     }
 
     /**
@@ -29,6 +32,8 @@ class Service extends EventEmitter {
      */
     start() {
 
+        // Send 'started' event notification
+        this.emit('started', this);
     }
 
     /**
@@ -36,19 +41,25 @@ class Service extends EventEmitter {
      */
     stop() {
 
+        // Send 'stopped' event notification
+        this.emit('stopped', this);
     }
 
     /**
      * Run an action that is part of the service.
      * @param action
+     * @param args
+     * @param options
      */
-    run(action) {
+    run(action, args, options) {
 
     }
 }
 
-function createService(service) {
+function createService(name, options) {
+    const service = new Service(name, options);
 
+    return service;
 }
 
 module.exports = createService;
