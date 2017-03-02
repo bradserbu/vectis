@@ -2,13 +2,15 @@
 'use strict';
 
 // ** Defaults
-const DEFAULT_SERVER_JSON = './server.json'; // Use Current Working Directory server.json file
+const DEFAULT_SERVER_JSON = 'server.json'; // Use Current Working Directory server.json file
 
 // ** Dependencies
 const yargs = require('yargs');
-const server = require('../src/server');
+const path = require('path');
+const Server = require('../src/server');
 const files = require('../src/files');
 const errors = require('../src/errors');
+const logger = require('../src/logger');
 
 function loadServerJson(filepath) {
 
@@ -16,6 +18,10 @@ function loadServerJson(filepath) {
     filepath = filepath
         ? files.resolve(filepath)
         : DEFAULT_SERVER_JSON;
+
+    // If filepath is a directory -> append program.json
+    if (files.isDirectory(filepath))
+        filepath = path.join(filepath, 'server.json');
 
     // Ensure json file exists
     if (!files.existsSync(filepath)) {
@@ -31,7 +37,16 @@ function loadServerJson(filepath) {
     return json;
 }
 
-// ** Program
-const json = loadServerJson();
+// Parse Command Line Arguments
+const argv = yargs.argv;
+const args = {
+    server_json: argv._.shift()
+};
 
-console.log(json);
+// Load Server
+const json = loadServerJson(args.server_json);
+
+logger.debug('SERVER_JSON', json);
+const server = Server(json);
+
+console.log('SERVER', server);

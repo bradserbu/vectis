@@ -1,6 +1,8 @@
 'use strict';
 
 // ** Dependencies
+const _ = require('lodash');
+const util = require('util');
 const EventEmitter = require('events').EventEmitter;
 
 function loadProvider(provider) {}
@@ -57,6 +59,11 @@ class Service extends EventEmitter {
 }
 
 function createService(name, options) {
+
+    // createServer({name:...}) -> createServer(name, {...}
+    if (arguments.length == 1 && util.isObject(arguments[0]))
+        return createServer(arguments[0].name, arguments[0]);
+
     const service = new Service(name, options);
 
     return service;

@@ -4,7 +4,7 @@
   "description": "Hello World Server",
   "services": {
     "helloworld": {
-      "descriptions": "Service to provide greetings to users.",
+      "description": "Service to provide greetings to users.",
       "actions": {
         "sayhello": {
           "provider": "sayhello.js",

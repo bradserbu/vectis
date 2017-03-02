@@ -2,7 +2,10 @@
 
 // ** Dependencies
 const _ = require('lodash');
+const util = require('util');
 const EventEmitter = require('events').EventEmitter;
+const Service = require('./service');
+const logger = require('./logger');
 
 function loadService(service) {}
 
@@ -13,29 +16,24 @@ class Server extends EventEmitter {
         super();
 
         this.name = name;
+        this.services = {};
+        this.interfaces = {};
     }
 
     loadService(service) {
 
+        const serviceName = service.name;
+
+        this.services[serviceName] = Service(serviceName, service);
     }
 
-    //noinspection JSAnnotator
-    loadInterface(interface) {
+    loadInterface(iface) {
 
-    }
-
-    initialize(options) {
-
-        // Initialize Services
-        _.forEach(options.services, this.loadService);
-
-        // Initialize Interfaces
-        _.forEach(options.interfaces, this.loadInterface);
-
-        this.emit('initialized', this);
     }
 
     start() {
+        // ** Start Services
+
         this.emit('started', this);
     }
 
@@ -45,11 +43,17 @@ class Server extends EventEmitter {
 }
 
 function createServer(name, options) {
+
+    // createServer({name:...}) -> createServer(name, {...}
+    if (arguments.length == 1 && util.isObject(arguments[0]))
+        return createServer(arguments[0].name, arguments[0]);
+
+    logger.debug('Initializing Server...', {name: name, options: options});
+
     const server = new Server(name);
 
-    server.initialize(options);
     return server;
 }
 
 // ** Exports
-module.exports = Server;
+module.exports = createServer;
